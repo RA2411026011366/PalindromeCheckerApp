@@ -1,26 +1,52 @@
-import java.util.Stack;
+import java.util.ArrayList;
+
+class ListNode {
+    int val;
+    ListNode next;
+
+    ListNode(int val) {
+        this.val = val;
+        this.next = null;
+    }
+}
+
 public class PalindromeCheckerApp {
+
+    public static boolean isPalindrome(ListNode head) {
+
+        // Step 1: Store all values into an ArrayList
+        ArrayList<Integer> list = new ArrayList<>();
+        ListNode current = head;
+
+        while (current != null) {
+            list.add(current.val);
+            current = current.next;
+        }
+
+        // Step 2: Check if the list is a palindrome
+        int left = 0;
+        int right = list.size() - 1;
+
+        while (left < right) {
+            if (!list.get(left).equals(list.get(right))) {
+                return false;
+            }
+            left++;
+            right--;
+        }
+
+        return true;
+    }
+
     public static void main(String[] args) {
 
-        String word = "level";  // Hardcoded string
-        Stack<Character> stack = new Stack<>();
+        // Creating linked list: 1 → 2 → 2 → 1
+        ListNode head = new ListNode(1);
+        head.next = new ListNode(2);
+        head.next.next = new ListNode(2);
+        head.next.next.next = new ListNode(1);
 
-        // Push each character into the stack
-        for (int i = 0; i < word.length(); i++) {
-            stack.push(word.charAt(i));
-        }
-
-        // Pop characters and build reversed string
-        String reversed = "";
-        while (!stack.isEmpty()) {
-            reversed += stack.pop();
-        }
-
-        // Compare original and reversed
-        if (word.equals(reversed)) {
-            System.out.println(word + " is a Palindrome");
-        } else {
-            System.out.println(word + " is NOT a Palindrome");
-        }
+        boolean result = isPalindrome(head);
+        System.out.println("Is Palindrome? " + result);
     }
 }
