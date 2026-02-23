@@ -1,5 +1,4 @@
 public class PalindromeCheckerApp {
-
         public static void main(String[] args) {
             String word = "racecar";
             char[] characters = word.toCharArray();
@@ -15,9 +14,9 @@ public class PalindromeCheckerApp {
                 right--;
             }
             if (isPalindrome) {
-                System.out.println(word + "is a Palindrome");
+                System.out.println(word + " is a Palindrome");
             } else {
-                System.out.println(word + "is NOT a Palindrome");
+                System.out.println(word + " is NOT a Palindrome");
             }
         }
     }
