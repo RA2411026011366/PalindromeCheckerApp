@@ -1,4 +1,4 @@
-public class UseCase2 {
+public class PalindromeCheckerApp {
     public static void main(String[]args){
         String word="madam";
         String reversed="";
@@ -6,9 +6,9 @@ public class UseCase2 {
             reversed = reversed+ word.charAt(i);
         }
         if(word.equals(reversed)) {
-            System.out.println(word + "is a Palindrome");
+            System.out.println(word + " is a Palindrome");
         }else {
-            System.out.println(word + "is not a Palindrome");
+            System.out.println(word + " is not a Palindrome");
         }
         System.out.println("Program ended Successfully");
     }
