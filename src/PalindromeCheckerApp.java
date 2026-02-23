@@ -3,7 +3,5 @@ public class PalindromeCheckerApp {
         System.out.println("Welcome to Palindrome Checker app");
         System.out.println("The version of this app is 1.0.0");
         System.out.println("Palindrome checker started successfully");
-
-
     }
 }
