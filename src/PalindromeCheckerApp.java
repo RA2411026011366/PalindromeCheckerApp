@@ -1,22 +1,40 @@
-public class PalindromeCheckerApp {
+import java.util.Queue;
+import java.util.LinkedList;
+import java.util.Stack;
+
+    public class PalindromeCheckerApp {
+
         public static void main(String[] args) {
-            String word = "racecar";
-            char[] characters = word.toCharArray();
-            int left = 0;
-            int right = characters.length - 1;
+
+            String word = "radar";  // Hardcoded string
+
+            Queue<Character> queue = new LinkedList<>();
+            Stack<Character> stack = new Stack<>();
+
+            // Enqueue and push characters
+            for (int i = 0; i < word.length(); i++) {
+                char c = word.charAt(i);
+                queue.add(c);   // Enqueue
+                stack.push(c);  // Push
+            }
+
             boolean isPalindrome = true;
-            while (left < right) {
-                if (characters[left] != characters[right]) {
+
+            // Compare dequeue vs pop
+            while (!queue.isEmpty()) {
+                char fromQueue = queue.remove();  // Dequeue
+                char fromStack = stack.pop();     // Pop
+
+                if (fromQueue != fromStack) {
                     isPalindrome = false;
                     break;
                 }
-                left++;
-                right--;
             }
+
             if (isPalindrome) {
                 System.out.println(word + " is a Palindrome");
             } else {
                 System.out.println(word + " is NOT a Palindrome");
+            }
         }
     }
-}
