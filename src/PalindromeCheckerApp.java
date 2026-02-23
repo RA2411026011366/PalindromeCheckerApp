@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 class ListNode {
     int val;
     ListNode next;
@@ -12,39 +10,45 @@ class ListNode {
 
 public class PalindromeCheckerApp {
 
+    // Pointer that moves from start
+    static ListNode left;
+
     public static boolean isPalindrome(ListNode head) {
+        left = head;
+        return checkPalindrome(head);
+    }
 
-        // Step 1: Store all values into an ArrayList
-        ArrayList<Integer> list = new ArrayList<>();
-        ListNode current = head;
+    private static boolean checkPalindrome(ListNode right) {
 
-        while (current != null) {
-            list.add(current.val);
-            current = current.next;
-        }
+        // Base case
+        if (right == null)
+            return true;
 
-        // Step 2: Check if the list is a palindrome
-        int left = 0;
-        int right = list.size() - 1;
+        // Recursively go to end
+        boolean result = checkPalindrome(right.next);
 
-        while (left < right) {
-            if (!list.get(left).equals(list.get(right))) {
-                return false;
-            }
-            left++;
-            right--;
-        }
+        // If already false, stop checking
+        if (!result)
+            return false;
+
+        // Compare left and right
+        if (left.val != right.val)
+            return false;
+
+        // Move left forward
+        left = left.next;
 
         return true;
     }
 
     public static void main(String[] args) {
 
-        // Creating linked list: 1 → 2 → 2 → 1
+        // Creating linked list: 1 → 2 → 3 → 2 → 1
         ListNode head = new ListNode(1);
         head.next = new ListNode(2);
-        head.next.next = new ListNode(2);
-        head.next.next.next = new ListNode(1);
+        head.next.next = new ListNode(3);
+        head.next.next.next = new ListNode(2);
+        head.next.next.next.next = new ListNode(1);
 
         boolean result = isPalindrome(head);
         System.out.println("Is Palindrome? " + result);
